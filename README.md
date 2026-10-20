@@ -16,6 +16,8 @@ Plug any monitor into your MacBook and get the same layout. macOS remembers arra
 ./build.sh --install  # also copies to ~/Applications
 ```
 
+The app icon is generated: edit `scripts/make-icon.swift`, then run `scripts/make-icon.sh` to rewrite `Resources/AppIcon.icns`.
+
 ## CLI
 
 ```sh
