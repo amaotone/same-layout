@@ -22,7 +22,7 @@ func draw() {
     let builtin = CGRect(x: x, y: bottom, width: small.width, height: small.height)
 
     // Overlap by one stroke so the touching edge is a single line, as in the menu bar icon.
-    let stroke: CGFloat = 26
+    let stroke: CGFloat = 36
     color(0xffffff).setStroke()
     for r in [external, CGRect(x: builtin.minX, y: builtin.minY, width: builtin.width + stroke, height: builtin.height)] {
         let path = NSBezierPath(rect: r.insetBy(dx: stroke / 2, dy: stroke / 2))
