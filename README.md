@@ -1,13 +1,10 @@
 # SameLayout
 
-Plug any monitor into your MacBook and get the same layout. macOS remembers arrangements per monitor, so every unfamiliar screen (hot desks, meeting rooms) starts out placed to the right. SameLayout keeps one arrangement and one main-display choice for "MacBook + one external display" and re-applies them whenever an external display connects, whichever monitor it is.
+Plug any monitor into your MacBook and get the same layout. macOS remembers arrangements per monitor, so every new screen starts out placed to the right. SameLayout keeps one arrangement and one main display, and re-applies them whenever an external display connects.
 
-- Arrangements: external to the right, above, or left of the MacBook, or mirrored. No "below": the laptop never sits above the monitor.
-- Right/left align the bottom edges (the laptop screen sits physically lower); above centers horizontally.
-- Pick the arrangement and the main display from the menu bar. With the menu open, 1–4 pick an arrangement and M switches the main display.
-- The icon draws the arrangement: the large rectangle is the external display, the small one the MacBook.
-- The menu shows the external monitor's real name (e.g. "DELL S2725QC").
-- No global hotkey. To bind a key, point a Raycast Script Command (or similar) at the CLI, e.g. `SameLayout next` or `SameLayout main external`.
+- Arrangements: right, above, left, or mirror. Pick one and the main display from the menu bar (1–4 and M work while the menu is open).
+- Right and left align bottom edges; above centers horizontally.
+- No global hotkey. Bind one with Raycast or similar, e.g. `SameLayout next`.
 
 ## Build
 
@@ -16,7 +13,7 @@ Plug any monitor into your MacBook and get the same layout. macOS remembers arra
 ./build.sh --install  # also copies to ~/Applications
 ```
 
-The app icon is generated: edit `scripts/make-icon.swift`, then run `scripts/make-icon.sh` to rewrite `Resources/AppIcon.icns`.
+To change the app icon, edit `scripts/make-icon.swift` and run `scripts/make-icon.sh`.
 
 ## CLI
 
@@ -29,9 +26,9 @@ SameLayout main builtin|external
 
 ## Limitations
 
-- Only the first external display is managed; others are left untouched.
+- Only the first external display is managed.
 - In mirror mode the main display is the mirror source.
-- Requires the lid to be open (the built-in display must be online).
+- The lid must be open.
 
 ## License
 
