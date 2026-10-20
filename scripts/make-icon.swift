@@ -21,21 +21,14 @@ func draw() {
     let external = CGRect(x: x + small.width, y: bottom, width: large.width, height: large.height)
     let builtin = CGRect(x: x, y: bottom, width: small.width, height: small.height)
 
-    NSGraphicsContext.saveGraphicsState()
-    let shadow = NSShadow()
-    shadow.shadowColor = color(0x000000, 0.3)
-    shadow.shadowOffset = NSSize(width: 0, height: -12)
-    shadow.shadowBlurRadius = 30
-    shadow.set()
-    color(0xffffff).setFill()
-    NSBezierPath(rect: external).fill()
-    color(0xdfe7ff).setFill()
-    NSBezierPath(rect: builtin).fill()
-    NSGraphicsContext.restoreGraphicsState()
-
-    // Seam so the two screens read as two displays, not one shape.
-    color(0x101728, 0.35).setFill()
-    NSBezierPath(rect: CGRect(x: external.minX - 4, y: bottom, width: 8, height: small.height)).fill()
+    // Overlap by one stroke so the touching edge is a single line, as in the menu bar icon.
+    let stroke: CGFloat = 26
+    color(0xffffff).setStroke()
+    for r in [external, CGRect(x: builtin.minX, y: builtin.minY, width: builtin.width + stroke, height: builtin.height)] {
+        let path = NSBezierPath(rect: r.insetBy(dx: stroke / 2, dy: stroke / 2))
+        path.lineWidth = stroke
+        path.stroke()
+    }
 }
 
 let rep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(canvas), pixelsHigh: Int(canvas),
