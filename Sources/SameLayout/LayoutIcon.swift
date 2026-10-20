@@ -2,7 +2,7 @@ import AppKit
 
 /// Template image of the arrangement: the large rectangle is the external display, the small one the MacBook.
 enum LayoutIcon {
-    private static let large = CGSize(width: 15, height: 10)
+    private static let large = CGSize(width: 16, height: 10)
     private static let small = CGSize(width: 10, height: 7)
     private static let stroke: CGFloat = 1.5
 
@@ -27,7 +27,7 @@ enum LayoutIcon {
         case .above:
             b.origin = CGPoint(x: ((e.width - b.width) / 2).rounded(), y: e.height - stroke)
         case .mirror:
-            b.origin = CGPoint(x: e.width - b.width + 3, y: e.height - b.height + 3)
+            b.origin = CGPoint(x: e.width - b.width + 2.5, y: e.height - b.height + 2.5)
         }
 
         let box = e.union(b)
