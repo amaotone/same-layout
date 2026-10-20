@@ -4,6 +4,7 @@ import AppKit
 enum LayoutIcon {
     private static let large = CGSize(width: 15, height: 10)
     private static let small = CGSize(width: 10, height: 7)
+    private static let stroke: CGFloat = 1.5
 
     static func image(_ arrangement: Arrangement, size: NSSize = NSSize(width: 26, height: 16)) -> NSImage {
         let image = NSImage(size: size, flipped: true) { bounds in
@@ -15,16 +16,16 @@ enum LayoutIcon {
     }
 
     private static func draw(_ arrangement: Arrangement, in bounds: CGRect) {
-        // y down. Touching rectangles overlap by 1pt so they share a single stroke.
+        // y down. Touching rectangles overlap by one stroke width so they share a single line.
         var e = CGRect(origin: .zero, size: large), b = CGRect(origin: .zero, size: small)
         switch arrangement {
         case .right:
             b.origin.y = e.height - b.height
-            e.origin.x = b.width - 1
+            e.origin.x = b.width - stroke
         case .left:
-            b.origin = CGPoint(x: e.width - 1, y: e.height - b.height)
+            b.origin = CGPoint(x: e.width - stroke, y: e.height - b.height)
         case .above:
-            b.origin = CGPoint(x: ((e.width - b.width) / 2).rounded(), y: e.height - 1)
+            b.origin = CGPoint(x: ((e.width - b.width) / 2).rounded(), y: e.height - stroke)
         case .mirror:
             b.origin = CGPoint(x: e.width - b.width + 3, y: e.height - b.height + 3)
         }
@@ -32,7 +33,7 @@ enum LayoutIcon {
         let box = e.union(b)
         let dx = ((bounds.width - box.width) / 2).rounded(), dy = ((bounds.height - box.height) / 2).rounded()
         for (i, r) in [e, b].enumerated() {
-            let path = NSBezierPath(rect: r.offsetBy(dx: dx, dy: dy).insetBy(dx: 0.5, dy: 0.5))
+            let path = NSBezierPath(rect: r.offsetBy(dx: dx, dy: dy).insetBy(dx: stroke / 2, dy: stroke / 2))
             if arrangement == .mirror && i == 1 {
                 // Erase the display behind so the MacBook reads as in front.
                 NSGraphicsContext.current?.compositingOperation = .clear
@@ -40,7 +41,7 @@ enum LayoutIcon {
                 NSGraphicsContext.current?.compositingOperation = .sourceOver
             }
             NSColor.black.setStroke()
-            path.lineWidth = 1
+            path.lineWidth = stroke
             path.stroke()
         }
     }
