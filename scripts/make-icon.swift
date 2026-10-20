@@ -11,7 +11,7 @@ func color(_ hex: UInt32, _ alpha: CGFloat = 1) -> NSColor {
 }
 
 func draw() {
-    NSGradient(starting: color(0x4f7bff), ending: color(0x1d3fb0))!
+    NSGradient(starting: color(0x2b3a67), ending: color(0x101728))!
         .draw(in: NSBezierPath(roundedRect: body, xRadius: 185, yRadius: 185), angle: -90)
 
     // Same motif as the menu bar icon: external display (large) right of the MacBook (small),
@@ -34,7 +34,7 @@ func draw() {
     NSGraphicsContext.restoreGraphicsState()
 
     // Seam so the two screens read as two displays, not one shape.
-    color(0x1d3fb0, 0.35).setFill()
+    color(0x101728, 0.35).setFill()
     NSBezierPath(rect: CGRect(x: external.minX - 4, y: bottom, width: 8, height: small.height)).fill()
 }
 
