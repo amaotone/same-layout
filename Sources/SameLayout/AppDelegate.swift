@@ -41,7 +41,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if let pair = DisplayPair.current() {
             button.image = LayoutIcon.image(pair.arrangement ?? preferred)
         } else {
-            button.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: "DisplayCycle")
+            button.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: "SameLayout")
         }
     }
 
@@ -58,7 +58,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             preferred = arrangement
             preferExternalMain = externalIsMain
         } catch {
-            NSLog("DisplayCycle: \(error)")
+            NSLog("SameLayout: \(error)")
             NSSound.beep()
         }
         refreshIcon()
@@ -70,9 +70,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.removeAllItems()
 
         if #available(macOS 14, *) {
-            menu.addItem(.sectionHeader(title: "DisplayCycle"))
+            menu.addItem(.sectionHeader(title: "SameLayout"))
         } else {
-            menu.addItem(withTitle: "DisplayCycle", action: nil, keyEquivalent: "")
+            menu.addItem(withTitle: "SameLayout", action: nil, keyEquivalent: "")
         }
         menu.addItem(.separator())
 
@@ -137,7 +137,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                 try SMAppService.mainApp.register()
             }
         } catch {
-            NSLog("DisplayCycle: launch at login: \(error)")
+            NSLog("SameLayout: launch at login: \(error)")
             NSSound.beep()
         }
     }

@@ -2,9 +2,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "DisplayCycle",
+    name: "SameLayout",
     platforms: [.macOS(.v13)],
     targets: [
-        .executableTarget(name: "DisplayCycle")
+        .executableTarget(name: "SameLayout")
     ]
 )

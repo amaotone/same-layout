@@ -1,29 +1,28 @@
-# DisplayCycle
+# SameLayout
 
-Menu bar app that cycles a MacBook's built-in display and one external display through right → above → left → mirror, and switches which one is the main display. (No "below": the laptop never sits above the monitor.)
+Plug any monitor into your MacBook and get the same layout. macOS remembers arrangements per monitor, so every unfamiliar screen (hot desks, meeting rooms) starts out placed to the right. SameLayout keeps one arrangement and one main-display choice for "MacBook + one external display" and re-applies them whenever an external display connects, whichever monitor it is.
 
-- No global hotkey. To bind a key, point a Raycast Script Command (or similar) at the CLI, e.g. `DisplayCycle next` or `DisplayCycle main external`
-- With the menu open, 1–4 pick an arrangement and M switches the main display
-- The menu bar icon and menu items draw the arrangement with laptop and monitor symbols
-- The menu shows the external monitor's real name (e.g. "DELL S2725QC")
-- Any non-built-in display counts as "the external display". The chosen arrangement and main display are stored once, not per display, so it carries over to unfamiliar monitors (e.g. hot desks).
-- When an external display connects, the last chosen arrangement and main display are re-applied.
+- Arrangements: external to the right, above, or left of the MacBook, or mirrored. No "below": the laptop never sits above the monitor.
 - Right/left align the bottom edges (the laptop screen sits physically lower); above centers horizontally.
+- Pick the arrangement and the main display from the menu bar. With the menu open, 1–4 pick an arrangement and M switches the main display.
+- The icon draws the arrangement: the large rectangle is the external display, the small one the MacBook.
+- The menu shows the external monitor's real name (e.g. "DELL S2725QC").
+- No global hotkey. To bind a key, point a Raycast Script Command (or similar) at the CLI, e.g. `SameLayout next` or `SameLayout main external`.
 
 ## Build
 
 ```sh
-./build.sh            # -> build/DisplayCycle.app
+./build.sh            # -> build/SameLayout.app
 ./build.sh --install  # also copies to ~/Applications
 ```
 
 ## CLI
 
 ```sh
-DisplayCycle status
-DisplayCycle next
-DisplayCycle set right|above|left|mirror
-DisplayCycle main builtin|external
+SameLayout status
+SameLayout next
+SameLayout set right|above|left|mirror
+SameLayout main builtin|external
 ```
 
 ## Limitations
