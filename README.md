@@ -32,3 +32,7 @@ SameLayout main builtin|external
 - Only the first external display is managed; others are left untouched.
 - In mirror mode the main display is the mirror source.
 - Requires the lid to be open (the built-in display must be online).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
